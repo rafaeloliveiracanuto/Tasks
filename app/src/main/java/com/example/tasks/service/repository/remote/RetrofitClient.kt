@@ -1,9 +1,8 @@
-package com.example.tasks.service.repository
+package com.example.tasks.service.repository.remote
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class RetrofitClient private constructor(){
 
@@ -15,7 +14,7 @@ class RetrofitClient private constructor(){
         private fun getRetrofitInstance() : Retrofit {
 
             val httpClient = OkHttpClient.Builder()
-            if (!::retrofit.isInitialized) {
+            if (!Companion::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(httpClient.build())
@@ -27,7 +26,8 @@ class RetrofitClient private constructor(){
         }
 
         fun <S> createService(serviceClass: Class<S>): S {
-            return getRetrofitInstance().create(serviceClass)
+            return getRetrofitInstance()
+                .create(serviceClass)
         }
     }
 }
