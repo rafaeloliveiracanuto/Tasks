@@ -19,6 +19,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val mLogin = MutableLiveData<ValidationListener>()
     var login: LiveData<ValidationListener> = mLogin
 
+    private val mLoggedUser = MutableLiveData<Boolean>()
+    var loggedUser: LiveData<Boolean> = mLoggedUser
+
     fun doLogin(email: String, password: String) {
         mPersonRepository.login(email, password, object : APIListener {
             override fun onSuccess(model: HeaderModel) {
@@ -38,6 +41,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun verifyLoggedUser() {
+        val token = mSharedPreferences.get(TaskConstants.SHARED.TOKEN_KEY)
+        val personKey = mSharedPreferences.get(TaskConstants.SHARED.PERSON_KEY)
+
+        val logged = (token != "" && personKey != "")
+
+        mLoggedUser.value = logged
     }
 
 }
