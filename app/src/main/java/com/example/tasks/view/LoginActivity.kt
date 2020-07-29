@@ -21,11 +21,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         mViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        // Inicializa eventos
         setListeners();
         observe()
 
-        // Verifica se usuário está logado
         verifyLoggedUser()
     }
 
@@ -37,38 +35,28 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    /**
-     * Inicializa os eventos de click
-     */
     private fun setListeners() {
         button_login.setOnClickListener(this)
         text_register.setOnClickListener(this)
     }
 
-    /**
-     * Verifica se usuário está logado
-     */
     private fun verifyLoggedUser() {
         mViewModel.verifyLoggedUser()
     }
 
-    /**
-     * Observa ViewModel
-     */
     private fun observe() {
         mViewModel.login.observe(this, Observer {
-            if (it) {
+            if (it.success()) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "Erro ao login", Toast.LENGTH_SHORT).show()
+                val message = it.failure()
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    /**
-     * Autentica usuário
-     */
+
     private fun handleLogin() {
         val email = edit_email.text.toString()
         val password = edit_password.text.toString()
