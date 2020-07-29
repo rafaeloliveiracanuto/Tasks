@@ -54,6 +54,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
         })
+
+        mViewModel.loggedUser.observe(this, Observer {
+            if (it) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 
 
