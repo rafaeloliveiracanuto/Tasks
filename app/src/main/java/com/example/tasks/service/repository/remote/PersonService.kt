@@ -21,7 +21,7 @@ interface PersonService {
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("receiveNews") news: String
+        @Field("receiveNews") news: Boolean
     ): Call<HeaderModel>
 
 }
