@@ -1,14 +1,18 @@
 package com.example.tasks.service.repository
 
+import android.content.Context
+import com.example.tasks.service.constants.TaskConstants
 import com.example.tasks.service.model.PriorityModel
+import com.example.tasks.service.repository.local.TaskDatabase
 import com.example.tasks.service.repository.remote.PriorityService
 import com.example.tasks.service.repository.remote.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PriorityRepository {
+class PriorityRepository(context: Context) {
     private val mRemote = RetrofitClient.createService(PriorityService::class.java)
+    private val mPriorityDatabase = TaskDatabase.getDatabase(context).priorityDAO()
 
     fun all() {
         val call: Call<List<PriorityModel>> = mRemote.list()
@@ -17,11 +21,12 @@ class PriorityRepository {
                 TODO("Not yet implemented")
             }
 
-            override fun onResponse(
-                call: Call<List<PriorityModel>>,
-                response: Response<List<PriorityModel>>
-            ) {
-                TODO("Not yet implemented")
+            override fun onResponse(call: Call<List<PriorityModel>>, response: Response<List<PriorityModel>>) {
+                if (response.code() != TaskConstants.HTTP.SUCCESS) {
+                    response.body()?.let {
+                        mPriorityDatabase.save(it)
+                    }
+                }
             }
 
         })
