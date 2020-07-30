@@ -17,5 +17,24 @@ interface TaskService {
     @GET("Task/{id}")
     fun load(@Path(value = "id", encoded = true) id: Int): Call<TaskModel>
 
+    @POST("Task")
+    @FormUrlEncoded
+    fun create(
+        @Field("PriorityId") priorityId: Int,
+        @Field("Description") description: String,
+        @Field("DueData") dueDate: String,
+        @Field("Complete") complete: Boolean
+    ): Call<Boolean>
+
+    @HTTP(method = "PUT", path = "Task", hasBody = true)
+    @FormUrlEncoded
+    fun update(
+        @Field("Id") Id: Int,
+        @Field("PriorityId") priorityId: Int,
+        @Field("Description") description: String,
+        @Field("DueData") dueDate: String,
+        @Field("Complete") complete: Boolean
+    ): Call<Boolean>
+
     
 }
