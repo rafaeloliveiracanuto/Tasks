@@ -23,6 +23,7 @@ class PriorityRepository(context: Context) {
 
             override fun onResponse(call: Call<List<PriorityModel>>, response: Response<List<PriorityModel>>) {
                 if (response.code() != TaskConstants.HTTP.SUCCESS) {
+                    mPriorityDatabase.clear()
                     response.body()?.let {
                         mPriorityDatabase.save(it)
                     }
