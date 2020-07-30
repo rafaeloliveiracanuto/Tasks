@@ -36,5 +36,14 @@ interface TaskService {
         @Field("Complete") complete: Boolean
     ): Call<Boolean>
 
-    
+    @HTTP(method = "PUT", path = "Task/Complete", hasBody = true)
+    @FormUrlEncoded
+    fun complete(
+        @Field("Id") Id: Int
+    ): Call<Boolean>
+
+    @HTTP(method = "PUT", path = "Task/Undo", hasBody = true)
+    @FormUrlEncoded
+    fun undo(@Field("Id") Id: Int): Call<Boolean>
+
 }
