@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
@@ -48,7 +49,14 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
     private fun observe() {
         mViewModel.priorities.observe(this, androidx.lifecycle.Observer {
-            
+            val list: MutableList<String> = arrayListOf()
+
+            for (item in it) {
+                list.add(item.description)
+            }
+
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list)
+            spinner_priority.adapter = adapter
         })
     }
 
