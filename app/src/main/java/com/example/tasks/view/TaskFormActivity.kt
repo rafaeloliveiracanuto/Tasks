@@ -18,6 +18,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
     private lateinit var mViewModel: TaskFormViewModel
     private val mDateFormat = SimpleDateFormat("dd/MM/yyyy")
+    private val mListPriorityId: MutableList<Int> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +46,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             this.description = edit_description.text.toString()
             this.complete = check_complete.isChecked
             this.dueDate = button_date.text.toString()
-            this.priorityId = 0
+            this.priorityId = mListPriorityId[spinner_priority.selectedItemPosition]
         }
     }
 
@@ -63,6 +64,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
 
             for (item in it) {
                 list.add(item.description)
+                mListPriorityId.add(item.id)
             }
 
             val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list)
