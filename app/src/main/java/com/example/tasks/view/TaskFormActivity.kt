@@ -48,6 +48,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             this.dueDate = button_date.text.toString()
             this.priorityId = mListPriorityId[spinner_priority.selectedItemPosition]
         }
+
+        mViewModel.save(task)
     }
 
     private fun showDatePicker() {
