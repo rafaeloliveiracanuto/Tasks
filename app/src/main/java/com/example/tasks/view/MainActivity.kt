@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, TaskFormActivity::class.java)
             startActivity(intent)
         }
-        
+
         setupNavigation()
 
         observe()
