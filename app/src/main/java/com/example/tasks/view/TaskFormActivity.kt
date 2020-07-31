@@ -18,7 +18,6 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
 
         mViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
-        // Inicializa eventos
         listeners()
         observe()
     }
