@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
+import com.example.tasks.service.model.TaskModel
 import com.example.tasks.viewmodel.TaskFormViewModel
 import kotlinx.android.synthetic.main.activity_task_form.*
 import java.text.SimpleDateFormat
@@ -40,7 +41,12 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     }
 
     private fun handleSave() {
-        
+        val task = TaskModel().apply {
+            this.description = edit_description.text.toString()
+            this.complete = check_complete.isChecked
+            this.dueDate = button_date.text.toString()
+            this.priorityId = 0
+        }
     }
 
     private fun showDatePicker() {
