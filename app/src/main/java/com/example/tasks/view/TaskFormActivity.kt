@@ -33,10 +33,14 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     override fun onClick(v: View) {
         val id = v.id
         if (id == R.id.button_save) {
-
+            handleSave()
         } else if (id == R.id.button_date) {
             showDatePicker()
         }
+    }
+
+    private fun handleSave() {
+        
     }
 
     private fun showDatePicker() {
