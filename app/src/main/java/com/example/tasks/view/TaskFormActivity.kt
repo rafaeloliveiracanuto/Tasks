@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
 import com.example.tasks.viewmodel.RegisterViewModel
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_register.button_save
+import kotlinx.android.synthetic.main.activity_task_form.*
 
 class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -31,6 +33,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
             val password = edit_password.text.toString()
 
             mViewModel.create(name, email, password)
+        } else if (id == R.id.button_save) {
+            showDatePicker()
         }
     }
 
@@ -39,6 +43,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun listeners() {
         button_save.setOnClickListener(this)
+        button_date.setOnClickListener(this)
     }
 
 }
