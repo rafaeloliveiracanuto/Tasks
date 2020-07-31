@@ -7,10 +7,7 @@ import android.view.View
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
-import com.example.tasks.viewmodel.RegisterViewModel
 import com.example.tasks.viewmodel.TaskFormViewModel
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register.button_save
 import kotlinx.android.synthetic.main.activity_task_form.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,6 +47,9 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     }
 
     private fun observe() {
+        mViewModel.priorities.observe(this, androidx.lifecycle.Observer {
+            
+        })
     }
 
     private fun listeners() {
