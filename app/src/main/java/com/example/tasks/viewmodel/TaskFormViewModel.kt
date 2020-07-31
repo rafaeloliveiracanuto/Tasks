@@ -9,6 +9,6 @@ class TaskFormViewModel(application: Application) : AndroidViewModel(application
     private val mPriorityRepository = PriorityRepository(application)
 
     fun listPriorities() {
-        mPriorityRepository.all()
+        mPriorityRepository.list()
     }
 }
