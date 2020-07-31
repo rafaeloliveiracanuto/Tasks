@@ -1,5 +1,6 @@
 package com.example.tasks.view
 
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import com.example.tasks.viewmodel.RegisterViewModel
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.button_save
 import kotlinx.android.synthetic.main.activity_task_form.*
+import java.util.*
 
 class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -36,6 +38,14 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
         } else if (id == R.id.button_save) {
             showDatePicker()
         }
+    }
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog(this, this, year, month, day).show()
     }
 
     private fun observe() {
