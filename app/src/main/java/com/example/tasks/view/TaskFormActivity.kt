@@ -11,11 +11,13 @@ import com.example.tasks.viewmodel.RegisterViewModel
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.button_save
 import kotlinx.android.synthetic.main.activity_task_form.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private lateinit var mViewModel: RegisterViewModel
+    private val mDateFormat = SimpleDateFormat("dd/MM/yyyy")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             val password = edit_password.text.toString()
 
             mViewModel.create(name, email, password)
-        } else if (id == R.id.button_save) {
+        } else if (id == R.id.button_date) {
             showDatePicker()
         }
     }
@@ -58,7 +60,11 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        TODO("Not yet implemented")
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, dayOfMonth)
+
+        val str = mDateFormat.format(calendar.time)
+        button_date.text = str
     }
 
 }
