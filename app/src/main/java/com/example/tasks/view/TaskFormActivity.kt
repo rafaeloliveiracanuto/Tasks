@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
 import com.example.tasks.viewmodel.RegisterViewModel
@@ -12,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_register.button_save
 import kotlinx.android.synthetic.main.activity_task_form.*
 import java.util.*
 
-class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
+class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private lateinit var mViewModel: RegisterViewModel
 
@@ -54,6 +55,10 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener {
     private fun listeners() {
         button_save.setOnClickListener(this)
         button_date.setOnClickListener(this)
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        TODO("Not yet implemented")
     }
 
 }
