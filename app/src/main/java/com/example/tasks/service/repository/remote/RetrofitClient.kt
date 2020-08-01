@@ -29,9 +29,7 @@ class RetrofitClient private constructor(){
                     return chain.proceed(request)
                 }
 
-            }
-
-            )
+            })
 
             if (!Companion::retrofit.isInitialized) {
                 retrofit = Retrofit.Builder()
@@ -42,6 +40,10 @@ class RetrofitClient private constructor(){
             }
 
             return retrofit
+        }
+
+        fun addHeader(token: String, personKey: String) {
+            
         }
 
         fun <S> createService(serviceClass: Class<S>): S {
