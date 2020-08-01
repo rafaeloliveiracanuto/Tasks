@@ -43,7 +43,8 @@ class RetrofitClient private constructor(){
         }
 
         fun addHeader(token: String, personKey: String) {
-            
+            this.personKey = personKey
+            this.tokenKey = token
         }
 
         fun <S> createService(serviceClass: Class<S>): S {
