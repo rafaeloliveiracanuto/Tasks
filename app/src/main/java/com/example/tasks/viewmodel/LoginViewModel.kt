@@ -11,6 +11,7 @@ import com.example.tasks.service.model.HeaderModel
 import com.example.tasks.service.repository.PersonRepository
 import com.example.tasks.service.repository.PriorityRepository
 import com.example.tasks.service.repository.local.SecurityPreferences
+import com.example.tasks.service.repository.remote.RetrofitClient
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -30,6 +31,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 mSharedPreferences.store(TaskConstants.SHARED.TOKEN_KEY, model.token)
                 mSharedPreferences.store(TaskConstants.SHARED.PERSON_KEY, model.personKey)
                 mSharedPreferences.store(TaskConstants.SHARED.PERSON_NAME, model.name)
+
+                RetrofitClient.addHeader(model.token, model.personKey)
 
                 mLogin.value = ValidationListener()
 
