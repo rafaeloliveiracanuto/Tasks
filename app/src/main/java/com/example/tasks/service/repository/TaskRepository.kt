@@ -26,6 +26,11 @@ class TaskRepository(val context: Context ) {
         list(call, listener)
     }
 
+    fun overdue(listener: APIListener<List<TaskModel>>) {
+        val call: Call<List<TaskModel>> = mRemote.overdue()
+        list(call, listener)
+    }
+
     private fun list(call: Call<List<TaskModel>>, listener: APIListener<List<TaskModel>>) {
         call.enqueue(object : Callback<List<TaskModel>> {
             override fun onFailure(call: Call<List<TaskModel>>, t: Throwable) {
