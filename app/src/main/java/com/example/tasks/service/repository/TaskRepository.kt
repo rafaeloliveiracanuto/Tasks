@@ -16,7 +16,7 @@ class TaskRepository(val context: Context ) {
 
     private val mRemote = RetrofitClient.createService(TaskService::class.java)
 
-    fun create(task: TaskModel, listener: APIListener) {
+    fun create(task: TaskModel, listener: APIListener<Boolean>) {
         val call: Call<Boolean> =
             mRemote.create(task.priorityId, task.description, task.dueDate, task.complete)
         call.enqueue(object : Callback<Boolean> {
