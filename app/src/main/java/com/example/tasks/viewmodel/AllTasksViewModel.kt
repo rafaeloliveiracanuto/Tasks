@@ -29,12 +29,12 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
         })
     }
 
-    fun complete() {
-
+    fun complete(id: Int) {
+        mTaskRepository.updateStatus(id, true)
     }
 
-    fun undo() {
-        
+    fun undo(id: Int) {
+        mTaskRepository.updateStatus(id, false)
     }
 
 }
