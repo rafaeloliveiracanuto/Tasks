@@ -12,6 +12,7 @@ import com.example.tasks.service.repository.PersonRepository
 import com.example.tasks.service.repository.PriorityRepository
 import com.example.tasks.service.repository.local.SecurityPreferences
 import com.example.tasks.service.repository.remote.RetrofitClient
+import retrofit2.http.Header
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -26,7 +27,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     var loggedUser: LiveData<Boolean> = mLoggedUser
 
     fun doLogin(email: String, password: String) {
-        mPersonRepository.login(email, password, object : APIListener {
+        mPersonRepository.login(email, password, object : APIListener<HeaderModel> {
             override fun onSuccess(model: HeaderModel) {
                 mSharedPreferences.store(TaskConstants.SHARED.TOKEN_KEY, model.token)
                 mSharedPreferences.store(TaskConstants.SHARED.PERSON_KEY, model.personKey)
