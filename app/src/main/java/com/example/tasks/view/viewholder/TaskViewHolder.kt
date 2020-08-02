@@ -1,6 +1,7 @@
 package com.example.tasks.view.viewholder
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,6 +23,14 @@ class TaskViewHolder(itemView: View, val listener: TaskListener) :
         this.mTextDescription.text = ""
         this.mTextPriority.text = ""
         this.mTextDueDate.text = ""
+
+        if (task.complete) {
+            mTextDescription.setTextColor(Color.GRAY)
+            mImageTask.setImageResource(R.drawable.ic_done)
+        } else {
+            mTextDescription.setTextColor(Color.BLACK)
+            mImageTask.setImageResource(R.drawable.ic_todo)
+        }
 
         // mTextDescription.setOnClickListener { listener.onListClick(task.id) }
         // mImageTask.setOnClickListener { }
