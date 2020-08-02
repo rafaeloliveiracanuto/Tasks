@@ -30,6 +30,14 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun complete(id: Int) {
+        updateStatus(id, true)
+    }
+
+    fun undo(id: Int) {
+        updateStatus(id, false)
+    }
+
+    private fun updateStatus(id: Int, complete: Boolean) {
         mTaskRepository.updateStatus(id, true, object : APIListener<Boolean> {
             override fun onSuccess(model: Boolean) {
                 list()
@@ -40,23 +48,6 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
             }
 
         })
-    }
-
-    fun undo(id: Int) {
-        mTaskRepository.updateStatus(id, false, object : APIListener<Boolean> {
-            override fun onSuccess(model: Boolean) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onFailure(str: String) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
-
-    private fun updateStatus() {
-        
     }
 
 }
