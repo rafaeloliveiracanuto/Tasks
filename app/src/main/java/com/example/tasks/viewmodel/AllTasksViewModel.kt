@@ -30,7 +30,16 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun delete(id: Int) {
-        
+        mTaskRepository.delete(id, object : APIListener<Boolean> {
+            override fun onSuccess(model: Boolean) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(str: String) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     fun complete(id: Int) {
