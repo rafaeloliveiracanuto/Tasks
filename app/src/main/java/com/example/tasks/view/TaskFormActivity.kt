@@ -88,6 +88,15 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             spinner_priority.adapter = adapter
         })
 
+        mViewModel.task.observe(this, androidx.lifecycle.Observer {
+            edit_description.setText(it.description)
+            check_complete.isChecked = it.complete
+            spinner_priority.setSelection(getIndex(it.priorityId))
+
+            val date = SimpleDateFormat("yyyy-MM-dd").parse(it.dueDate)
+            button_date.text = mDateFormat.format(date)
+        })
+
         mViewModel.validation.observe(this, androidx.lifecycle.Observer {
             if (it.success()) {
                 Toast.makeText(this, "Sucesso!", Toast.LENGTH_SHORT).show()
