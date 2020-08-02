@@ -16,6 +16,23 @@ class TaskRepository(val context: Context ) {
 
     private val mRemote = RetrofitClient.createService(TaskService::class.java)
 
+    fun all(listener: APIListener<List<TaskModel>>) {
+        val call: Call<List<TaskModel>> = mRemote.all()
+        call.enqueue(object : Callback<List<TaskModel>> {
+            override fun onFailure(call: Call<List<TaskModel>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onResponse(
+                call: Call<List<TaskModel>>,
+                response: Response<List<TaskModel>>
+            ) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
     fun create(task: TaskModel, listener: APIListener<Boolean>) {
         val call: Call<Boolean> =
             mRemote.create(task.priorityId, task.description, task.dueDate, task.complete)
