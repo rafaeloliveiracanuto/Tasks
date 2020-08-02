@@ -49,7 +49,7 @@ class AllTasksFragment : Fragment() {
             }
 
             override fun onUndoClick(id: Int) {
-                mViewModel.onUndo(id)
+                mViewModel.undo(id)
             }
         }
 
