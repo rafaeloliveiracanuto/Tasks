@@ -29,4 +29,12 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
         })
     }
 
+    fun complete() {
+
+    }
+
+    fun undo() {
+        
+    }
+
 }
