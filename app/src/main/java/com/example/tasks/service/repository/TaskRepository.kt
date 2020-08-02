@@ -51,6 +51,10 @@ class TaskRepository(val context: Context ) {
         })
     }
 
+    fun updateStatus(id: Int, complete: Boolean) {
+
+    }
+
     fun create(task: TaskModel, listener: APIListener<Boolean>) {
         val call: Call<Boolean> =
             mRemote.create(task.priorityId, task.description, task.dueDate, task.complete)
