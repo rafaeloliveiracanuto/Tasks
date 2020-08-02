@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
 import com.example.tasks.service.listener.TaskListener
+import com.example.tasks.service.model.TaskModel
 
 class TaskViewHolder(itemView: View, val listener: TaskListener) :
     RecyclerView.ViewHolder(itemView) {
@@ -16,16 +17,12 @@ class TaskViewHolder(itemView: View, val listener: TaskListener) :
     private var mTextDueDate: TextView = itemView.findViewById(R.id.text_due_date)
     private var mImageTask: ImageView = itemView.findViewById(R.id.image_task)
 
-    /**
-     * Atribui valores aos elementos de interface e também eventos
-     */
-    fun bindData() {
+    fun bindData(task: TaskModel) {
 
         this.mTextDescription.text = ""
         this.mTextPriority.text = ""
         this.mTextDueDate.text = ""
 
-        // Eventos
         // mTextDescription.setOnClickListener { listener.onListClick(task.id) }
         // mImageTask.setOnClickListener { }
 
