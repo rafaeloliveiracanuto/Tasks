@@ -32,7 +32,7 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
     fun complete(id: Int) {
         mTaskRepository.updateStatus(id, true, object : APIListener<Boolean> {
             override fun onSuccess(model: Boolean) {
-                TODO("Not yet implemented")
+                list()
             }
 
             override fun onFailure(str: String) {
@@ -53,6 +53,10 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
             }
 
         })
+    }
+
+    private fun updateStatus() {
+        
     }
 
 }
