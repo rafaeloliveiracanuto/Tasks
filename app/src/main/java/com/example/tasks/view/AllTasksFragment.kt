@@ -62,6 +62,12 @@ class AllTasksFragment : Fragment() {
         mViewModel.list()
     }
 
-    private fun observe() {}
+    private fun observe() {
+        mViewModel.tasks.observe(viewLifecycleOwner, Observer {
+            if (it.count() > 0) {
+                mAdapter.updateListener(it)
+            }
+        })
+    }
 
 }
