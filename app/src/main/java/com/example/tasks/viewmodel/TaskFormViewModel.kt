@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import com.example.tasks.service.model.PriorityModel
 import com.example.tasks.service.model.TaskModel
 import com.example.tasks.service.repository.PriorityRepository
+import com.example.tasks.service.repository.TaskRepository
 
 class TaskFormViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mPriorityRepository = PriorityRepository(application)
+    private val mTaskRepository = TaskRepository(application)
 
     private val mPriorityList = MutableLiveData<List<PriorityModel>>()
     var priorities: LiveData<List<PriorityModel>> = mPriorityList
@@ -20,6 +22,6 @@ class TaskFormViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun save(task: TaskModel) {
-
+        mTaskRepository.create(task)
     }
 }
