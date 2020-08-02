@@ -16,6 +16,26 @@ class TaskRepository(val context: Context ) {
 
     private val mRemote = RetrofitClient.createService(TaskService::class.java)
 
+    private fun list(call: Call<List<TaskModel>>, listener: APIListener<List<TaskModel>>) {
+        call.enqueue(object : Callback<List<TaskModel>> {
+            override fun onFailure(call: Call<List<TaskModel>>, t: Throwable) {
+                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            }
+
+            override fun onResponse(call: Call<List<TaskModel>>, response: Response<List<TaskModel>>) {
+                if (response.code() != TaskConstants.HTTP.SUCCESS) {
+                    val validation = Gson().fromJson(response.errorBody()!!.string(), String::class.java)
+                    listener.onFailure(validation)
+                } else {
+                    response.body()?.let {
+                        listener.onSuccess(it)
+                    }
+                }
+            }
+
+        })
+    }
+
     fun all(listener: APIListener<List<TaskModel>>) {
         val call: Call<List<TaskModel>> = mRemote.all()
         call.enqueue(object : Callback<List<TaskModel>> {
@@ -36,6 +56,8 @@ class TaskRepository(val context: Context ) {
 
         })
     }
+
+    
 
     fun create(task: TaskModel, listener: APIListener<Boolean>) {
         val call: Call<Boolean> =
