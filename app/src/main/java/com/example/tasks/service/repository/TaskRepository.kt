@@ -20,14 +20,18 @@ class TaskRepository(val context: Context ) {
         val call: Call<List<TaskModel>> = mRemote.all()
         call.enqueue(object : Callback<List<TaskModel>> {
             override fun onFailure(call: Call<List<TaskModel>>, t: Throwable) {
-                TODO("Not yet implemented")
+                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
             }
 
-            override fun onResponse(
-                call: Call<List<TaskModel>>,
-                response: Response<List<TaskModel>>
-            ) {
-                TODO("Not yet implemented")
+            override fun onResponse(call: Call<List<TaskModel>>, response: Response<List<TaskModel>>) {
+                if (response.code() != TaskConstants.HTTP.SUCCESS) {
+                    val validation = Gson().fromJson(response.errorBody()!!.string(), String::class.java)
+                    listener.onFailure(validation)
+                } else {
+                    response.body()?.let {
+                        listener.onSuccess(it)
+                    }
+                }
             }
 
         })
