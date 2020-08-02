@@ -20,8 +20,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 0
-        // return mList.count()
+        return mList.count()
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
@@ -33,7 +32,8 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     }
 
     fun updateListener(list: List<TaskModel>) {
-
+        mList = list
+        notifyDataSetChanged()
     }
 
 }
