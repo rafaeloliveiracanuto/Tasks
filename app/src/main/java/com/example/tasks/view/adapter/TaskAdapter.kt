@@ -24,7 +24,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bindData()
+        holder.bindData(mList[position])
     }
 
     fun attachListener(listener: TaskListener) {
