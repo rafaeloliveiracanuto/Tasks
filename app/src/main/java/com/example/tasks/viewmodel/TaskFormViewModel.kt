@@ -40,6 +40,15 @@ class TaskFormViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun load(id: Int) {
+        mTaskRepository.load(id, object : APIListener<TaskModel> {
+            override fun onSuccess(model: TaskModel) {
+                
+            }
 
+            override fun onFailure(str: String) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 }
