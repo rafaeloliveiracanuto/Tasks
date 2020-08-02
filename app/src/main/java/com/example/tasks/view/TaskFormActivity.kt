@@ -106,6 +106,19 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
         })
     }
 
+    private fun getIndex(priorityId: Int): Int {
+        var index = 0
+
+        for (i in 0 until mListPriorityId.count()) {
+            if (mListPriorityId[i] == priorityId) {
+                index = i
+                break
+            }
+        }
+
+        return index
+    }
+
     private fun listeners() {
         button_save.setOnClickListener(this)
         button_date.setOnClickListener(this)
