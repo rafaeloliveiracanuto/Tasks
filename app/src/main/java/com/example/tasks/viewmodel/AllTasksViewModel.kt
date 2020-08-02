@@ -29,6 +29,10 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
         })
     }
 
+    fun delete(id: Int) {
+        
+    }
+
     fun complete(id: Int) {
         updateStatus(id, true)
     }
