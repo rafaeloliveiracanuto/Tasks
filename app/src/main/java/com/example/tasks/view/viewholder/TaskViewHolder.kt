@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks.R
 import com.example.tasks.service.listener.TaskListener
 import com.example.tasks.service.model.TaskModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TaskViewHolder(itemView: View, val listener: TaskListener) :
     RecyclerView.ViewHolder(itemView) {
 
+    private val mDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
     private var mTextDescription: TextView = itemView.findViewById(R.id.text_description)
     private var mTextPriority: TextView = itemView.findViewById(R.id.text_priority)
     private var mTextDueDate: TextView = itemView.findViewById(R.id.text_due_date)
@@ -20,9 +23,12 @@ class TaskViewHolder(itemView: View, val listener: TaskListener) :
 
     fun bindData(task: TaskModel) {
 
-        this.mTextDescription.text = ""
+        this.mTextDescription.text = task.description
         this.mTextPriority.text = ""
         this.mTextDueDate.text = ""
+
+        val date = SimpleDateFormat("yyyy-MM-dd").parse(task.dueDate)
+        this.mTextDueDate.text = mDateFormat.format(date)
 
         if (task.complete) {
             mTextDescription.setTextColor(Color.GRAY)
