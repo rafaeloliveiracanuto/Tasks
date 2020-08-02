@@ -9,6 +9,7 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
+import com.example.tasks.service.constants.TaskConstants
 import com.example.tasks.service.model.TaskModel
 import com.example.tasks.viewmodel.TaskFormViewModel
 import kotlinx.android.synthetic.main.activity_task_form.*
@@ -31,6 +32,8 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
         observe()
 
         mViewModel.listPriorities()
+
+        loadDataFromActivity()
     }
 
     override fun onClick(v: View) {
@@ -39,6 +42,15 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
             handleSave()
         } else if (id == R.id.button_date) {
             showDatePicker()
+        }
+    }
+
+    private fun loadDataFromActivity() {
+        val bundle = intent.extras
+
+        if (bundle != null) {
+            val taskId = bundle.getInt(TaskConstants.BUNDLE.TASKID)
+            mViewModel.load(taskId)
         }
     }
 
