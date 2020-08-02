@@ -21,6 +21,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     private lateinit var mViewModel: TaskFormViewModel
     private val mDateFormat = SimpleDateFormat("dd/MM/yyyy")
     private val mListPriorityId: MutableList<Int> = arrayListOf()
+    private var mTaskId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +50,14 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
         val bundle = intent.extras
 
         if (bundle != null) {
-            val taskId = bundle.getInt(TaskConstants.BUNDLE.TASKID)
+            mTaskId = bundle.getInt(TaskConstants.BUNDLE.TASKID)
             mViewModel.load(taskId)
         }
     }
 
     private fun handleSave() {
         val task = TaskModel().apply {
+            this.id = mTaskId
             this.description = edit_description.text.toString()
             this.complete = check_complete.isChecked
             this.dueDate = button_date.text.toString()

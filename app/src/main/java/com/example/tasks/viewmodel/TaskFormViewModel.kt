@@ -40,6 +40,6 @@ class TaskFormViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun load(id: Int) {
-        
+
     }
 }
