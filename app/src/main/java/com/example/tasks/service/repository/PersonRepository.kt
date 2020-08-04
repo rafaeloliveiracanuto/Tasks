@@ -44,6 +44,12 @@ class PersonRepository(val context: Context): BaseRepository(context){
     }
 
     fun create(name: String, email: String, password: String, listener: APIListener<HeaderModel>) {
+
+        if (!isConnectionAvailable(context)) {
+            listener.onFailure(context.getString(R.string.ERROR_INTERNET_CONNECTION))
+            return
+        }
+
         val call: Call<HeaderModel> = mRemote.create(name, email, password, true)
         call.enqueue(object : Callback<HeaderModel> {
             override fun onFailure(call: Call<HeaderModel>, t: Throwable) {
