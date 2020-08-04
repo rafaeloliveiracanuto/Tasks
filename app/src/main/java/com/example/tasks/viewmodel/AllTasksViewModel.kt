@@ -37,10 +37,11 @@ class AllTasksViewModel(application: Application) : AndroidViewModel(application
         mTaskRepository.delete(id, object : APIListener<Boolean> {
             override fun onSuccess(model: Boolean) {
                 list()
+                mValidation.value = ValidationListener()
             }
 
             override fun onFailure(str: String) {
-                TODO("Not yet implemented")
+                mValidation.value = ValidationListener(str)
             }
 
         })
