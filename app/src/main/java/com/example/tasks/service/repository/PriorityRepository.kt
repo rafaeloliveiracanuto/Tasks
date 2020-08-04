@@ -10,14 +10,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PriorityRepository(val context: Context) {
+class PriorityRepository(val context: Context) : BaseRepository(context) {
     private val mRemote = RetrofitClient.createService(PriorityService::class.java)
     private val mPriorityDatabase = TaskDatabase.getDatabase(context).priorityDAO()
 
     fun all() {
 
-        if (isConnectionAvailable(context)) {
-
+        if (!isConnectionAvailable(context)) {
             return
         }
 
