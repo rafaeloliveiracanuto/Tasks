@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             if (it.itemId == R.id.nav_logout) {
-
+                mViewModel.logout()
             } else {
                 NavigationUI.onNavDestinationSelected(it, navController)
                 drawerLayout.closeDrawer(GravityCompat.START)
