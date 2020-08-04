@@ -84,6 +84,12 @@ class MainActivity : AppCompatActivity() {
 
             header.findViewById<TextView>(R.id.text_name).text = it
         })
+
+        mViewModel.logout.observe(this, Observer {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
     }
 
 }
