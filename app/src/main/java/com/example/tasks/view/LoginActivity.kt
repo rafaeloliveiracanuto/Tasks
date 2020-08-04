@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             if (it.success()) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             } else {
                 val message = it.failure()
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -59,6 +60,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             if (it) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         })
     }
