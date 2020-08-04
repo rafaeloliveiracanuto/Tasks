@@ -36,4 +36,8 @@ class PriorityRepository(context: Context) {
     fun list() = mPriorityDatabase.list()
 
     fun getDescription(id: Int) = mPriorityDatabase.getDescription(id)
+
+    fun isConnectionAvailable(context: Context): Boolean {
+        
+    }
 }
