@@ -52,6 +52,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
         if (bundle != null) {
             mTaskId = bundle.getInt(TaskConstants.BUNDLE.TASKID)
             mViewModel.load(mTaskId)
+            button_save.text = getString(R.string.update_task)
         }
     }
 
