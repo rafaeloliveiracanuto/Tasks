@@ -20,11 +20,22 @@
         android:id="@+id/nav_next_tasks"
         android:name="com.example.tasks.view.AllTasksFragment"
         android:label="@string/proximos_7_dias"
-        tools:layout="@layout/fragment_all_tasks" />
+        tools:layout="@layout/fragment_all_tasks" >
+        <argument
+            android:name="taskFilter"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_expired"
         android:name="com.example.tasks.view.AllTasksFragment"
         android:label="@string/expiradas"
-        tools:layout="@layout/fragment_all_tasks" />
+        tools:layout="@layout/fragment_all_tasks" >
+        <argument
+            android:name="taskFilter"
+            app:argType="integer"
+            android:defaultValue="2" />
+        </fragment>
+
 </navigation>
