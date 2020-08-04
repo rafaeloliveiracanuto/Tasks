@@ -113,7 +113,7 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
     }
 
     private fun makeToast(str: String) {
-        
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
     }
 
     private fun getIndex(priorityId: Int): Int {
