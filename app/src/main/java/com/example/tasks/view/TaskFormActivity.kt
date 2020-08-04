@@ -112,6 +112,10 @@ class TaskFormActivity : AppCompatActivity(), View.OnClickListener, DatePickerDi
         })
     }
 
+    private fun makeToast(str: String) {
+        
+    }
+
     private fun getIndex(priorityId: Int): Int {
         var index = 0
 
