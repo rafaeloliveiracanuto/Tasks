@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        mViewModel.loadUserName()
     }
 
     override fun onSupportNavigateUp(): Boolean {
