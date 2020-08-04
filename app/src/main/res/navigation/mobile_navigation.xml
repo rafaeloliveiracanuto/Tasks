@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_next_tasks"
-        android:name="com.example.tasks.view.NextTasksFragment"
+        android:name="com.example.tasks.view.AllTasksFragment"
         android:label="@string/proximos_7_dias"
-        tools:layout="@layout/fragment_next_tasks" />
+        tools:layout="@layout/fragment_all_tasks" />
 
     <fragment
         android:id="@+id/nav_expired"
-        android:name="com.example.tasks.view.ExpiredTasksFragment"
+        android:name="com.example.tasks.view.AllTasksFragment"
         android:label="@string/expiradas"
-        tools:layout="@layout/fragment_expired_tasks" />
+        tools:layout="@layout/fragment_all_tasks" />
 </navigation>
