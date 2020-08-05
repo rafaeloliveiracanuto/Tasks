@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class PriorityRepository(val context: Context) : BaseRepository(context) {
     private val mRemote = RetrofitClient.createService(PriorityService::class.java)
-    private val mDatabase = TaskDatabase.getDatabase(context).priorityDAO()
+    private val mPriorityDatabase = TaskDatabase.getDatabase(context).priorityDAO()
 
     fun all() {
 
@@ -27,10 +27,10 @@ class PriorityRepository(val context: Context) : BaseRepository(context) {
             }
 
             override fun onResponse(call: Call<List<PriorityModel>>, response: Response<List<PriorityModel>>) {
-                if (response.code() != TaskConstants.HTTP.SUCCESS) {
-                    mDatabase.clear()
+                if (response.code() == TaskConstants.HTTP.SUCCESS) {
+                    mPriorityDatabase.clear()
                     response.body()?.let {
-                        mDatabase.save(it)
+                        mPriorityDatabase.save(it)
                     }
                 }
             }
@@ -38,8 +38,8 @@ class PriorityRepository(val context: Context) : BaseRepository(context) {
         })
     }
 
-    fun list() = mDatabase.list()
+    fun list() = mPriorityDatabase.list()
 
-    fun getDescription(id: Int) = mDatabase.getDescription(id)
+    fun getDescription(id: Int) = mPriorityDatabase.getDescription(id)
 
 }
