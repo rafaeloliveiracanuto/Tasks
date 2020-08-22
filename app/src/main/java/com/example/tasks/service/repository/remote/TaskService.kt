@@ -22,7 +22,7 @@ interface TaskService {
     fun create(
         @Field("PriorityId") priorityId: Int,
         @Field("Description") description: String,
-        @Field("DueData") dueDate: String,
+        @Field("DueDate") dueDate: String,
         @Field("Complete") complete: Boolean
     ): Call<Boolean>
 
@@ -32,7 +32,7 @@ interface TaskService {
         @Field("Id") Id: Int,
         @Field("PriorityId") priorityId: Int,
         @Field("Description") description: String,
-        @Field("DueData") dueDate: String,
+        @Field("DueDate") dueDate: String,
         @Field("Complete") complete: Boolean
     ): Call<Boolean>
 
